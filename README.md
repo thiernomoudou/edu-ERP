@@ -1,1 +1,2 @@
-Education Platform with Django and Angular
+# edu-platform
+University Management Platform based on  Django and Angular
