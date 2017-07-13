@@ -1,2 +1,2 @@
 # edu-platform
-University Management Platform based on  Django and Angular
+Cloud-based University Management Platform based on  Django and Angular
