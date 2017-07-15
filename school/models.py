@@ -21,4 +21,4 @@ class School(models.Model):
         """
         String for representing the Model object (in Admin site etc.)
         """
-        return (self.school_name)
+        return (self.name)

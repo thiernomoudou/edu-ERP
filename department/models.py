@@ -19,7 +19,7 @@ class Room(models.Model):
     comment = models.CharField(max_length=1000)
 
     def __str__(self):
-        return (self.room_name)
+        return (self.name)
 
 
 
@@ -36,7 +36,7 @@ class Course (models.Model):
         """
         String for representing the Model object (in Admin site etc.)
         """
-        return self.name
+        return (self.name)
 
 # class Student(models.Model):
 #     first_name = models.CharField(max_length=100)
