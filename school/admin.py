@@ -10,3 +10,4 @@ admin.site.register(Room)
 admin.site.register(Course)
 admin.site.register(Professor)
 admin.site.register(Employee)
+

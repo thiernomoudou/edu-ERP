@@ -17,5 +17,11 @@ class School(models.Model):
     registration_number = models.CharField(max_length=100, null=True, blank=True)
     authorization_number = models.CharField(max_length=100, null=True, blank=True)
 
-    def __str__(self):
+   
+    class Meta:
+        ordering = ('id',)
+        verbose_name = 'School'
+        verbose_name_plural = 'Schools'
+
+     def __str__(self):
         return(self.name)
