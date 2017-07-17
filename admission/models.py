@@ -8,10 +8,10 @@ class Saisie(models.Model):
     """
     nomber = models.IntegerField()
     first_name = models.CharField(max_length=100)
-    #logo = models.ImageField(null=True, blank=True)
+    # logo = models.ImageField(null=True, blank=True)
     last_name = models.CharField(max_length=200)
     middle_name = models.CharField(max_length=200, null=True, blank=True)
-    date_of_birth = models.CharField(max_length=200)
+    date_of_birth = models.DateField()
     place_of_birth = models.CharField(max_length=100)
     sexe = models.CharField(max_length=5)
     filiation_one = models.CharField(max_length=200)
@@ -33,12 +33,12 @@ class Inscription(models.Model):
     """
     Model representing a course(e.g. University).
     """
-    Nomber = models.CharField(max_length=100)
+    nomber = models.IntegerField()
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=200, null=True, blank=True)
     middle_name = models.CharField(max_length=200)
-    date_of_birth = models.CharField(max_length=200, null=True, blank=True)
-    place_of_birth = models.CharField(max_length=100, null=True, blank=True)
+    date_of_birth = models.DateField()
+    place_of_birth = models.CharField(max_length=100)
     sexe = models.CharField(max_length=50)
 
     def ___str__(self):
