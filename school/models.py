@@ -23,5 +23,5 @@ class School(models.Model):
         verbose_name = 'School'
         verbose_name_plural = 'Schools'
 
-     def __str__(self):
+    def __str__(self):
         return(self.name)
