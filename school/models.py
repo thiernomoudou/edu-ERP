@@ -17,6 +17,11 @@ class School(models.Model):
     registration_number = models.CharField(max_length=100, null=True, blank=True)
     authorization_number = models.CharField(max_length=100, null=True, blank=True)
 
+    class Meta:
+        ordering = ('id',)
+        verbose_name = 'School'
+        verbose_name_plural = 'Schools'
+
     def ___str__(self):
         """
         String for representing the Model object (in Admin site etc.)
