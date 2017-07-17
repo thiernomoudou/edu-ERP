@@ -5,7 +5,7 @@ class School(models.Model):
     Model representing a course(e.g. University).
     """
     name = models.CharField(max_length=100)
-    #logo = models.ImageField(null=True, blank=True)
+    logo = models.ImageField(null=True, blank=True)
     slogan = models.CharField(max_length=200, null=True, blank=True)
     adress_1 = models.CharField(max_length=200)
     adress_2 = models.CharField(max_length=200, null=True, blank=True)
@@ -17,8 +17,5 @@ class School(models.Model):
     registration_number = models.CharField(max_length=100, null=True, blank=True)
     authorization_number = models.CharField(max_length=100, null=True, blank=True)
 
-    def ___str__(self):
-        """
-        String for representing the Model object (in Admin site etc.)
-        """
-        return (self.name)
+    def __str__(self):
+        return(self.name)
