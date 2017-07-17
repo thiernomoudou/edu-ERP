@@ -21,7 +21,7 @@ class Saisie(models.Model):
     adresse_one = models.CharField(max_length=100)
     adresse_two = models.CharField(max_length=100, null=True, blank=True)
     school_origin = models.CharField(max_length=100)
-    # guardian = models.CharField(max_length=100)
+
 
     def ___str__(self):
         """
@@ -35,7 +35,6 @@ class Inscription(models.Model):
     """
     Nomber = models.CharField(max_length=100)
     first_name = models.CharField(max_length=100)
-    #photo = models.ImageField(null=True, blank=True)
     last_name = models.CharField(max_length=200, null=True, blank=True)
     middle_name = models.CharField(max_length=200)
     date_of_birth = models.CharField(max_length=200, null=True, blank=True)
