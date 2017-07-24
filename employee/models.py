@@ -1,30 +1,45 @@
 from django.db import models
 from django_countries.fields import CountryField
-from department.models import Course
-
-class Professor(models.Model):
-    first_name = models.CharField(max_length=128)
-    last_name = models.CharField(max_length=64)
-    birth_date = models.DateField(null=True, blank=True)
-    phone = models.ImageField()
-
-    SELECT_BLOOD_GROUP = (
-        ('A+', 'A+ve'), ('B+', 'B+ve'), ('O+', 'O+ve'), ('AB+', 'AB+ve'),
-        ('A-', 'A-ve'), ('B-', 'B-ve'), ('O-', 'O-ve'), ('AB-', 'AB-ve')
-        )
-    SELECT_GENDER = (
-        ('male', 'Male'), ('female', 'Female')
-        )
-    blood_group = models.CharField(max_length=8, choices=SELECT_BLOOD_GROUP, null=True, 
-    blank=True)
-    gender = models.CharField(max_length=8, choices=SELECT_GENDER)
-    nationality = CountryField(blank_label='(select country)')
-    id_card_number = models.CharField(max_length=64)
-    course = models.ManyToManyField(Course)
-
-
 
 
 
 class Employee(models.Model):
-    pass
+    SELECT_GENDER = (
+        ('male', 'Male'), ('female', 'Female')
+        )
+
+    employee_number = models.CharField(max_length=64)
+    first_name = models.CharField(max_length=100)
+    middle_name = models.CharField(max_length=100, null=True, blank=True)
+    last_name = models.CharField(max_length=100)
+    photo = models.ImageField(null=True, blank=True)
+    date_of_birth = models.DateField()
+    place_of_birth = models.CharField(max_length=100)
+    genre = models.CharField(max_length=32, choices=SELECT_GENDER)
+    nationality = CountryField(blank_label='(select country)')
+    father_name = models.CharField(max_length=200)
+    mother_name = models.CharField(max_length=200)
+    adress = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=32)
+    email = models.CharField(max_length=100, null=True, blank=True)
+    id_card_number = models.CharField(max_length=64)
+    job_type = models.CharField(max_length=100)
+    position = models.CharField(max_length=100)
+    ssn = models.CharField(max_length=64)
+
+    def __str__(self):
+        """
+        String for representing the Model object.
+        """
+        return '%s, %s' % (self.last_name, self.first_name)
+
+
+class Teacher(Employee):
+    
+    title = models.CharField(max_length=100)
+
+    def __str__(self):
+        """
+        String for representing the Model object.
+        """
+        return '%s, %s' % (self.last_name, self.first_name)

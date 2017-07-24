@@ -2,7 +2,7 @@ from django.db import models
 
 class School(models.Model):
     """
-    Model representing a course(e.g. University).
+    Model representing a school (e.g. University of cambridge).
     """
     name = models.CharField(max_length=100)
     logo = models.ImageField(null=True, blank=True)
@@ -10,18 +10,22 @@ class School(models.Model):
     adress_1 = models.CharField(max_length=200)
     adress_2 = models.CharField(max_length=200, null=True, blank=True)
     website = models.CharField(max_length=100, null=True, blank=True)
-    phone = models.CharField(max_length=50)
-    fax = models.CharField(max_length=50, null=True, blank=True)
+    phone = models.CharField(max_length=32)
+    fax = models.CharField(max_length=64, null=True, blank=True)
     email = models.CharField(max_length=100, null=True, blank=True)
     tax_id = models.CharField(max_length=100, null=True, blank=True)
     registration_number = models.CharField(max_length=100, null=True, blank=True)
     authorization_number = models.CharField(max_length=100, null=True, blank=True)
 
-   
-    class Meta:
-        ordering = ('id',)
-        verbose_name = 'School'
-        verbose_name_plural = 'Schools'
 
     def __str__(self):
-        return(self.name)
+        return (self.name)
+
+
+class Batch(models.Model):
+    name = models.CharField(max_length=100)
+    start_date = models.DateField()
+    end_date = models.DateField()
+
+    def __str__(self):
+        return (self.name)

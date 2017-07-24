@@ -12,14 +12,24 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('school', '0001_initial'),
+        ('department', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Employee',
+            name='Admission',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('employee_number', models.CharField(max_length=64)),
+                ('number_of_student', models.IntegerField()),
+                ('batch', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='school.Batch')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Registration',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('registration_number', models.CharField(max_length=64)),
                 ('first_name', models.CharField(max_length=100)),
                 ('middle_name', models.CharField(blank=True, max_length=100, null=True)),
                 ('last_name', models.CharField(max_length=100)),
@@ -34,17 +44,13 @@ class Migration(migrations.Migration):
                 ('phone_number', models.CharField(max_length=32)),
                 ('email', models.CharField(blank=True, max_length=100, null=True)),
                 ('id_card_number', models.CharField(max_length=64)),
-                ('job_type', models.CharField(max_length=100)),
-                ('position', models.CharField(max_length=100)),
-                ('ssn', models.CharField(max_length=64)),
+                ('guardian', models.CharField(max_length=100)),
+                ('guardian_adress', models.CharField(max_length=200)),
+                ('guardian_phone', models.CharField(max_length=32)),
+                ('guardian_email', models.CharField(blank=True, max_length=100, null=True)),
+                ('school_origin', models.CharField(max_length=100)),
+                ('batch', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='school.Batch')),
+                ('department', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='department.Department')),
             ],
-        ),
-        migrations.CreateModel(
-            name='Teacher',
-            fields=[
-                ('employee_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='employee.Employee')),
-                ('title', models.CharField(max_length=100)),
-            ],
-            bases=('employee.employee',),
         ),
     ]
