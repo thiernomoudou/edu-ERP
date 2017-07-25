@@ -10,7 +10,7 @@ class Registration(models.Model):
     Model representing a person(e.g. mohamed jalloh).
     """
     SELECT_GENDER = (
-        ('male', 'Male'), ('female', 'Female')
+        ('male', 'Male'), ('female', 'Female'),(None, 'Select Gender')
         )
 
     registration_number = models.CharField(max_length=64)

@@ -5,7 +5,7 @@ from django_countries.fields import CountryField
 
 class Employee(models.Model):
     SELECT_GENDER = (
-        ('male', 'Male'), ('female', 'Female')
+        ('male', 'Male'), ('female', 'Female'),(None, 'Select gender')
         )
 
     employee_number = models.CharField(max_length=64)

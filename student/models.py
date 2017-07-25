@@ -34,3 +34,12 @@ class Grade(models.Model):
 
     def __str__(self):
         return (self.name)
+
+
+class Payment(models.Model):
+    payment_number = models.CharField(max_length=64)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    date = models.DateField()
+    amount = models.DecimalField(max_digits=32, decimal_places=2)
+    total_paid = models.DecimalField(max_digits=32, decimal_places=2)
+    balance = models.DecimalField(max_digits=32, decimal_places=2)
