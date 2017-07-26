@@ -8,7 +8,7 @@ class Department(models.Model):
     """
     name = models.CharField(max_length=100)
     code = models.CharField(max_length=32)
-    section = models.CharField(max_length=200) # like first year, second semester
+    # school = models.ForeignKey(School, on_delete=models.CASCADE)
     fees = models.DecimalField(max_digits=32, decimal_places=2)
 
     def __str__(self):
@@ -24,13 +24,22 @@ class Room(models.Model):
 
 
 
+class ClassLevel(models.Model):
+    """Define objects like first-year, second-year"""
+    name = models.CharField(max_length=100)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return (self.name)
+
+
 class Subject(models.Model):
     """
     Model representing a course(e.g. Programming, Accounting).
     """
     name = models.CharField(max_length=100)
     code = models.CharField(max_length=32)
-    department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True)
+    class_level = models.ForeignKey(ClassLevel, on_delete=models.SET_NULL, null=True)
     teacher = models.ForeignKey(Teacher, on_delete=models.SET_NULL, null = True)
     description = models.CharField(max_length=500, null=True, blank=True)
 
@@ -39,5 +48,3 @@ class Subject(models.Model):
         String for representing the Model object (in Admin site etc.)
         """
         return (self.name)
-
-

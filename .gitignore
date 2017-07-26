@@ -3,4 +3,4 @@ myenv
 *.pyc
 *.swp
 db.sqlite3
-__pycache__
+__pycache__db.sqlite3

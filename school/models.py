@@ -1,5 +1,7 @@
 from django.db import models
 
+from department.models import Department
+
 class School(models.Model):
     """
     Model representing a school (e.g. University of cambridge).

@@ -1,13 +1,13 @@
 from django.contrib import admin
 
 from  .models import School, Batch
-from department.models import Department, Room, Subject
+from department.models import Department, Room, Subject, ClassLevel
 from admission.models import Registration, Admission
 from employee.models import Teacher, Employee
-from student.models import Student, Exam, Grade
+from student.models import Student, Exam, Grade, Payment
 
-admin.site.register(School)
-admin.site.register(Department)
+
+#admin.site.register(Department)
 admin.site.register(Room)
 admin.site.register(Subject)
 admin.site.register(Teacher)
@@ -18,12 +18,17 @@ admin.site.register(Admission)
 admin.site.register(Exam)
 admin.site.register(Grade)
 admin.site.register(Batch)
+admin.site.register(Payment)
 
 class GradeInline(admin.TabularInline):
     """
     Defines format of inline Grade insertion (used in StudentAdmin)
     """
     model = Grade
+
+class PaymentInline(admin.TabularInline):
+    model = Payment
+
 
 
 @admin.register(Student)
@@ -35,10 +40,34 @@ class StudentAdmin(admin.ModelAdmin):
      - orders fields in detail view (fields), grouping the date fields horizontally
      - adds inline addition of books in author view (inlines)
     """
-    # list_display = ('student.first_name', 'student.last_name', 'department', 'student.date_of_birth', 'department')
-    # fields = ['student.first_name', 'student.last_name', 'department', ('student.date_of_birth', 'student.nationality')]
-    # inlines = [GradeInline]
 
-    # list_display = ('department', 'student_card_number')
-    # fiels = ['department', 'student-card_number']
-    inlines = [GradeInline]
+    inlines = [GradeInline, PaymentInline]
+
+
+class ClassLevelInline(admin.TabularInline):
+    model = ClassLevel
+
+
+class StudentInline(admin.TabularInline):
+    model = Student
+
+
+class SubjectInline(admin.TabularInline):
+    model = Subject
+
+
+@admin.register(Department)
+class DepartmentAdmin(admin.ModelAdmin):
+    inlines = [ClassLevelInline]
+
+@admin.register(ClassLevel)
+class ClassLevelAdmin(admin.ModelAdmin):
+    inlines = [StudentInline, SubjectInline]
+
+# class DepartmentInline(admin.TabularInline):
+#     model = Department
+
+@admin.register(School)
+class SchoolAdmin(admin.ModelAdmin):
+    pass
+#     inlines = [DepartmentInline]

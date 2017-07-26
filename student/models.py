@@ -1,16 +1,16 @@
 from django.db import models
 
 from admission.models import Registration
-from department.models import Subject, Room, Department
+from department.models import Subject, Room, Department, ClassLevel
 
 class Student(models.Model):
     student_card_number = models.CharField(max_length=64)
     student = models.OneToOneField(Registration, on_delete=models.CASCADE)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
-    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    class_level = models.ForeignKey(ClassLevel, on_delete=models.CASCADE)
 
     def __str__(self):
-        return (self.student.first_name)
+        return '%s, department of %s' % (self.student.first_name, self.department)
 
 
 
@@ -39,7 +39,11 @@ class Grade(models.Model):
 class Payment(models.Model):
     payment_number = models.CharField(max_length=64)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    payment_type = models.CharField(max_length=64)
     date = models.DateField()
     amount = models.DecimalField(max_digits=32, decimal_places=2)
     total_paid = models.DecimalField(max_digits=32, decimal_places=2)
     balance = models.DecimalField(max_digits=32, decimal_places=2)
+
+    def __str__(self):
+        return (self.payment_number)
