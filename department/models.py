@@ -40,7 +40,7 @@ class Subject(models.Model):
     name = models.CharField(max_length=100)
     code = models.CharField(max_length=32)
     class_level = models.ForeignKey(ClassLevel, on_delete=models.SET_NULL, null=True)
-    teacher = models.ForeignKey(Teacher, on_delete=models.SET_NULL, null = True)
+    teacher = models.ManyToManyField(Teacher)
     description = models.CharField(max_length=500, null=True, blank=True)
 
     def __str__(self):

@@ -10,7 +10,7 @@ class Student(models.Model):
     class_level = models.ForeignKey(ClassLevel, on_delete=models.CASCADE)
 
     def __str__(self):
-        return '%s, department of %s' % (self.student.first_name, self.department)
+        return '%s, department of %s' % (self.student.first_name, self.class_level)
 
 
 

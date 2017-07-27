@@ -5,6 +5,8 @@ from department.models import Department, Room, Subject, ClassLevel
 from admission.models import Registration, Admission
 from employee.models import Teacher, Employee
 from student.models import Student, Exam, Grade, Payment
+from timetable.models import Timetable
+from attendance.models import Attendance
 
 
 #admin.site.register(Department)
@@ -19,6 +21,8 @@ admin.site.register(Exam)
 admin.site.register(Grade)
 admin.site.register(Batch)
 admin.site.register(Payment)
+admin.site.register(Timetable)
+admin.site.register(Attendance)
 
 class GradeInline(admin.TabularInline):
     """

@@ -17,8 +17,6 @@ class Employee(models.Model):
     place_of_birth = models.CharField(max_length=100)
     genre = models.CharField(max_length=32, choices=SELECT_GENDER)
     nationality = CountryField(blank_label='(select country)')
-    father_name = models.CharField(max_length=200)
-    mother_name = models.CharField(max_length=200)
     adress = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=32)
     email = models.CharField(max_length=100, null=True, blank=True)
@@ -36,7 +34,7 @@ class Employee(models.Model):
 
 class Teacher(Employee):
     
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100) 
 
     def __str__(self):
         """
