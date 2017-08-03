@@ -14,7 +14,6 @@ class Registration(models.Model):
         )
 
     registration_number = models.CharField(max_length=64)
-    batch = models.ForeignKey(Batch, on_delete=models.SET_NULL, null=True)
     department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True)
     first_name = models.CharField(max_length=100)
     middle_name = models.CharField(max_length=100, null=True, blank=True)
