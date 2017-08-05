@@ -66,7 +66,7 @@ class DepartmentAdmin(admin.ModelAdmin):
 
 @admin.register(ClassLevel)
 class ClassLevelAdmin(admin.ModelAdmin):
-    inlines = [StudentInline, SubjectInline]
+    inlines = [SubjectInline]
 
 # class DepartmentInline(admin.TabularInline):
 #     model = Department

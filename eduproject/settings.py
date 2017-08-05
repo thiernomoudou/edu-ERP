@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'coreapi',
     'django_countries',
+    # 'accounts',
     'school',
     'department',
     'employee',
@@ -52,11 +53,12 @@ INSTALLED_APPS = [
     'attendance',
 ]
 
+# AUTH_USER_MODEL = 'accounts.Account'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',

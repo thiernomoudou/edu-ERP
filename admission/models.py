@@ -1,7 +1,7 @@
 from django.db import models
 from django_countries.fields import CountryField
 from school.models import Batch
-from department.models import Department
+from department.models import Department, ClassLevel
 
 # Create your models here.
 
@@ -14,7 +14,6 @@ class Registration(models.Model):
         )
 
     registration_number = models.CharField(max_length=64)
-    department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True)
     first_name = models.CharField(max_length=100)
     middle_name = models.CharField(max_length=100, null=True, blank=True)
     last_name = models.CharField(max_length=100)
@@ -43,14 +42,16 @@ class Registration(models.Model):
 
 
 class Admission(models.Model):
-
+    student_card_number = models.CharField(max_length=64)
+    date = models.DateField()
     batch = models.ForeignKey(Batch)
-    number_of_student = models.IntegerField()
-    # student = models.ForeignKey(Student)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    Registree = models.OneToOneField(Registration)
+    class_level =models.ForeignKey(ClassLevel, on_delete=models.CASCADE)
 
 
     def __str__(self):
         """
         String for representing the Model object.
         """
-        return (self.batch)
+        return (self.registree.name)

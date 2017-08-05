@@ -7,6 +7,7 @@ class School(models.Model):
     Model representing a school (e.g. University of cambridge).
     """
     name = models.CharField(max_length=100)
+    abreviation = models.CharField(max_length=16)
     logo = models.ImageField(null=True, blank=True)
     slogan = models.CharField(max_length=200, null=True, blank=True)
     adress_1 = models.CharField(max_length=200)
@@ -28,7 +29,6 @@ class Batch(models.Model):
     name = models.CharField(max_length=100)
     start_date = models.DateField()
     end_date = models.DateField()
-    department = models.ForeignKey(Department, on_delete=models.CASCADE)
 
     def __str__(self):
         return (self.name)

@@ -1,13 +1,12 @@
 from django.db import models
 
-from admission.models import Registration
+from admission.models import Admission
 from department.models import Subject, Room, Department, ClassLevel
 
 class Student(models.Model):
-    student_card_number = models.CharField(max_length=64)
-    student = models.OneToOneField(Registration, on_delete=models.CASCADE)
-    room = models.ForeignKey(Room, on_delete=models.CASCADE)
-    class_level = models.ForeignKey(ClassLevel, on_delete=models.CASCADE)
+    
+    student = models.OneToOneField(Admission, on_delete=models.CASCADE)
+
 
     def __str__(self):
         return '%s, department of %s' % (self.student.first_name, self.class_level)
