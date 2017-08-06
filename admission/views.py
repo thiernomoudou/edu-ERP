@@ -1,8 +1,8 @@
 from django.shortcuts import render
 
 # Create your views here.
-from .models import Registration
-from .serializers import RegistrationSerializer
+from .models import Registration, Admission
+from .serializers import RegistrationSerializer, AdmissionSerializer
 from .permissions import IsOwnerOrReadOnly
 
 from rest_framework import viewsets, permissions
@@ -19,6 +19,27 @@ class RegistrationViewSet(viewsets.ModelViewSet):
     queryset = Registration.objects.all()
     serializer_class = RegistrationSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+
+class AdmissionViewSet(viewsets.ModelViewSet):
+    """
+    This viewset automatically provides `list`, `create`, `retrieve`,
+    `update` and `destroy` actions.
+    """
+    queryset = Admission.objects.all()
+    serializer_class = AdmissionSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+
+
+
+
+
+
+
+
 
 # class RegistrationView(viewsets.ViewSet):
 #     """

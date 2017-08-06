@@ -46,7 +46,7 @@ class Admission(models.Model):
     date = models.DateField()
     batch = models.ForeignKey(Batch)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
-    Registree = models.OneToOneField(Registration)
+    registree = models.OneToOneField(Registration)
     class_level =models.ForeignKey(ClassLevel, on_delete=models.CASCADE)
 
 
@@ -54,4 +54,4 @@ class Admission(models.Model):
         """
         String for representing the Model object.
         """
-        return (self.registree.name)
+        return (self.registree.first_name)

@@ -7,8 +7,10 @@ from rest_framework.schemas import get_schema_view
 schema_view = get_schema_view(title='Pastebin API')
 
 router = DefaultRouter()
+
 #router.register(prefix='list', viewset=RegistrationView, base_name='Registration')
-router.register(r'', views.RegistrationViewSet)
+router.register(r'registration', views.RegistrationViewSet)
+router.register(r'admission', views.AdmissionViewSet)
 
 urlpatterns = [
     url(r'^schema/$', schema_view),
