@@ -9,7 +9,7 @@ class Student(models.Model):
 
 
     def __str__(self):
-        return '%s, department of %s' % (self.student.first_name, self.class_level)
+        return '%s, department of %s' % (self.student.registree.first_name, self.student.class_level)
 
 
 

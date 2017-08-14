@@ -11,13 +11,13 @@ SELECT_GENDER = (
         )
 
 def registration_number():
-    today_year = datetime.date.today().year
+    current_year = datetime.date.today().year
     last_reg = Registration.objects.latest('id')
     if not last_reg:
-        return("Reg-%d-%08d" % (today_year, 1))
+        return("Reg-%d-%08d" % (current_year, 1))
     last_id = last_reg.id
     current_id = int(last_id) + 1
-    return ("Reg-%d-%08d" % (today_year, current_id))
+    return ("Reg-%d-%08d" % (current_year, current_id))
 
 
 class Registration(models.Model):
@@ -58,13 +58,13 @@ def student_number():
         raise("there should be a school")
     school_abbr = school.abreviation
     school_str = school_abbr[:2]
-    today_year = datetime.date.today().year
+    current_year = datetime.date.today().year
     last_student = Admission.objects.latest('id')
     if not last_student:
-        return("%s-%d-%08d" % (school_str, today_year, 1))
+        return("%s-%d-%08d" % (school_str, current_year, 1))
     last_id = last_student.id
     current_id = int(last_id) + 1
-    return("%s-%d-%08d" % (school_str, today_year, 1))
+    return("%s-%d-%08d" % (school_str, current_year, 1))
 
 
 class Admission(models.Model):
