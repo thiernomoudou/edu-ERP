@@ -10,9 +10,14 @@ SELECT_GENDER = (
         ('male', 'Male'), ('female', 'Female'),(None, 'Select Gender')
         )
 
+# help create a "isc/2017/00000002" format registration number
 def registration_number():
     current_year = datetime.date.today().year
-    last_reg = Registration.objects.latest('id')
+    try:
+        last_reg = Registration.objects.latest('id')
+    except Registration.DoesNotExist:
+        last_reg = None
+    
     if not last_reg:
         return("Reg-%d-%08d" % (current_year, 1))
     last_id = last_reg.id
@@ -52,6 +57,7 @@ class Registration(models.Model):
         return '%s, %s' % (self.last_name, self.first_name)
 
 
+# help create a "isc/2017/00000002" format student number
 def student_number():
     school = School.objects.get(pk=1)
     if not school:
@@ -59,12 +65,16 @@ def student_number():
     school_abbr = school.abreviation
     school_str = school_abbr[:2]
     current_year = datetime.date.today().year
-    last_student = Admission.objects.latest('id')
+    try:
+         last_student = Admission.objects.latest('id')
+    except Admission.DoesNotExist:
+        last_student = None
+   
     if not last_student:
-        return("%s-%d-%08d" % (school_str, current_year, 1))
+        return("%s/%d/%08d" % (school_str, current_year, 1))
     last_id = last_student.id
     current_id = int(last_id) + 1
-    return("%s-%d-%08d" % (school_str, current_year, 1))
+    return("%s/%d/%08d" % (school_str, current_year, 1))
 
 
 class Admission(models.Model):
