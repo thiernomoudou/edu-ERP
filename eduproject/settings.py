@@ -44,13 +44,10 @@ INSTALLED_APPS = [
     'coreapi',
     'django_countries',
     'accounts',
-    'school',
     'department',
-    'employee',
     'admission',
     'student',
-    'timetable',
-    'attendance',
+    'sysadmin',
 ]
 
 AUTH_USER_MODEL = 'accounts.Account'

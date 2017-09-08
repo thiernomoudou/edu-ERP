@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
-from .models import ClassLevel, Department, Room, Subject
-from .serializers import ClasslevelSerializer, DepartmentSerializer, RoomSerializer, SubjectSerializer
+from .models import ClassLevel, Department, Program
+from .serializers import ClassLevelSerializer, DepartmentSerializer, ProgramSerializer
 from .permissions import IsAccountOwner
 
 from rest_framework import viewsets, permissions
@@ -9,13 +9,13 @@ from rest_framework import viewsets, permissions
 
 
 
-class ClasslevelViewSet(viewsets.ModelViewSet):
+class ClassLevelViewSet(viewsets.ModelViewSet):
     """
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
     """
     queryset = ClassLevel.objects.all()
-    serializer_class = ClasslevelSerializer
+    serializer_class = ClassLevelSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 class DepartmentViewSet(viewsets.ModelViewSet):
@@ -23,16 +23,8 @@ class DepartmentViewSet(viewsets.ModelViewSet):
     serializer_class = DepartmentSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
-class RoomViewSet(viewsets.ModelViewSet):
-    queryset = Room.objects.all()
-    serializer_class = RoomSerializer
+class ProgramViewSet(viewsets.ModelViewSet):
+    queryset = Program.objects.all()
+    serializer_class = ProgramSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
-class SubjectViewSet(viewsets.ModelViewSet):
-    """
-    This viewset automatically provides `list`, `create`, `retrieve`,
-    `update` and `destroy` actions.
-    """
-    queryset = Subject.objects.all()
-    serializer_class = SubjectSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)

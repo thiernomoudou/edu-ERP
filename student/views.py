@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
-from .models import Student, Exam, Grade, Payment
-from .serializers import StudentSerializer, ExamSerializer, GradeSerializer, PaymentSerializer
+from .models import Student, Baccalaureat, Country, StudentDetail
+from .serializers import StudentSerializer, BaccalaureatSerializer, CountrySerializer, StudentDetailSerializer
 from .permissions import IsAccountOwner
 
 from rest_framework import viewsets, permissions
@@ -18,21 +18,21 @@ class StudentViewSet(viewsets.ModelViewSet):
     serializer_class = StudentSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
-class ExamViewSet(viewsets.ModelViewSet):
-    queryset = Exam.objects.all()
-    serializer_class = ExamSerializer
+class BaccalaureatViewSet(viewsets.ModelViewSet):
+    queryset = Baccalaureat.objects.all()
+    serializer_class = BaccalaureatSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
-class GradeViewSet(viewsets.ModelViewSet):
-    queryset = Grade.objects.all()
-    serializer_class = GradeSerializer
+class CountryViewSet(viewsets.ModelViewSet):
+    queryset = Country.objects.all()
+    serializer_class = CountrySerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
-class PaymentViewSet(viewsets.ModelViewSet):
+class StudentDetailViewSet(viewsets.ModelViewSet):
     """
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
     """
-    queryset = Payment.objects.all()
-    serializer_class = PaymentSerializer
+    queryset = StudentDetail.objects.all()
+    serializer_class = StudentDetailSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)

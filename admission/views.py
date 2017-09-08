@@ -1,23 +1,21 @@
 from django.shortcuts import render
 
 # Create your views here.
-from .models import Registration, Admission
-from .serializers import RegistrationSerializer, AdmissionSerializer
+from .models import AcademicYear, Admission, AdmissionProcess
+from .serializers import AcademicYearSerializer, AdmissionSerializer, AdmissionProcessSerializer
 from .permissions import IsAccountOwner
 
 from rest_framework import viewsets, permissions
-# from rest_framework.views import APIView
-# from rest_framework.response import Response
-# from rest_framework import status
 
 
-class RegistrationViewSet(viewsets.ModelViewSet):
+
+class AcademicYearViewSet(viewsets.ModelViewSet):
     """
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
     """
-    queryset = Registration.objects.all()
-    serializer_class = RegistrationSerializer
+    queryset = AcademicYear.objects.all()
+    serializer_class = AcademicYearSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
@@ -32,6 +30,14 @@ class AdmissionViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
+class AdmissionProcessViewSet(viewsets.ModelViewSet):
+    """
+    This viewset automatically provides `list`, `create`, `retrieve`,
+    `update` and `destroy` actions.
+    """
+    queryset = AdmissionProcess.objects.all()
+    serializer_class = AdmissionProcessSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 

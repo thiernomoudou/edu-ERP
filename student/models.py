@@ -1,47 +1,42 @@
 from django.db import models
+from sysadmin.models import User
 
-from admission.models import Admission
-from department.models import Subject, Room, Department, ClassLevel
+
+class Baccalaureat(models.Model):
+    name = models.CharField(max_length=16)
+    school_origin = models.CharField(max_length=100)
+    bac_year = models.CharField(max_length=4)
+    table_number = models.CharField(max_length=16)
+
+    def __str__(self):
+        return(self.name)
+
+
+class Country(models.Model):
+    country_name = models.CharField(max_length=45)
+    country_code = models.CharField(max_length=3)
+
+    def __str__(self):
+        return (self.country_name)
 
 class Student(models.Model):
-    
-    student = models.OneToOneField(Admission, on_delete=models.CASCADE)
+    id_number =  models.CharField(max_length=16)
+    baccalaureat = models.ForeignKey(Baccalaureat, on_delete=models.CASCADE)
 
 
-    def __str__(self):
-        return '%s, department of %s' % (self.student.registree.first_name, self.student.class_level)
+    # def __str__(self):
+    #     return (self)
 
 
-
-class Exam(models.Model):
-    name = models.CharField(max_length=100)
-    code = models.CharField(max_length=64)
-    start_date = models.DateField()
-    end_date = models.DateField()
-
-    def __str__(self):
-        return (self.name)
-
-
-class Grade(models.Model):
-    Grade_1 = models.IntegerField()
-    Grade_2 = models.IntegerField()
-    exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
+class StudentDetail(models.Model):
+    first_name = models.CharField(max_length=45)
+    last_name = models.CharField(max_length=45)
+    detail_high_school = models.CharField(max_length=45)
+    details_last_modified = models.DateField()
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return (self.name)
+        return "%s %s" %(first_name, last_name)
 
-
-class Payment(models.Model):
-    payment_number = models.CharField(max_length=64)
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    payment_type = models.CharField(max_length=64)
-    date = models.DateField()
-    amount = models.DecimalField(max_digits=32, decimal_places=2)
-    total_paid = models.DecimalField(max_digits=32, decimal_places=2)
-    balance = models.DecimalField(max_digits=32, decimal_places=2)
-
-    def __str__(self):
-        return (self.payment_number)

@@ -11,36 +11,32 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('sysadmin', '0001_initial'),
-        ('student', '0001_initial'),
-        ('department', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='AcademicYear',
+            name='Role',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('start_date', models.DateField()),
-                ('end_date', models.DateField()),
-                ('label', models.CharField(max_length=45)),
+                ('role_description', models.CharField(max_length=45)),
             ],
         ),
         migrations.CreateModel(
-            name='Admission',
+            name='User',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('academic_year', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='admission.AcademicYear')),
-                ('class_level', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='department.ClassLevel')),
-                ('student', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='student.Student')),
+                ('first_name', models.CharField(max_length=45)),
+                ('last_name', models.CharField(max_length=45)),
+                ('email', models.CharField(max_length=25)),
+                ('password', models.CharField(max_length=32)),
+                ('create_time', models.DateTimeField(auto_now_add=True)),
             ],
         ),
         migrations.CreateModel(
-            name='AdmissionProcess',
+            name='UserHasRole',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('last_modified', models.DateTimeField(auto_now=True)),
-                ('admission', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='admission.Admission')),
+                ('role', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sysadmin.Role')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sysadmin.User')),
             ],
         ),

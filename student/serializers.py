@@ -1,42 +1,44 @@
 from rest_framework import serializers
 
-from .models import Student, Exam, Grade, Payment
-from admission.serializers import AdmissionSerializer
-from department.serializers import SubjectSerializer
+from .models import Student, Baccalaureat, Country, StudentDetail
+
+# from sysadmin.serializers import UserSerializer
+
+
+class BaccalaureatSerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.ReadOnlyField()
+    class Meta:
+        model = Baccalaureat
+        fields = '__all__'
+        extra_fields = ['url']
+
 
 
 class StudentSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.ReadOnlyField()
-    student = AdmissionSerializer()
+    baccalaureat = BaccalaureatSerializer()
     class Meta:
         model = Student
         fields = '__all__'
         extra_fields = ['url']
 
 
-class ExamSerializer(serializers.HyperlinkedModelSerializer):
+
+class CountrySerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.ReadOnlyField()
+    
     class Meta:
-        model = Exam
+        model = Country
         fields = '__all__'
         extra_fields = ['url']
 
 
-class GradeSerializer(serializers.HyperlinkedModelSerializer):
+class StudentDetailSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.ReadOnlyField()
-    exam = ExamSerializer()
-    student = StudentSerializer()
-    subject = SubjectSerializer()
-    class Meta:
-        model = Grade
-        fields = '__all__'
-        extra_fields = ['url']
-
-
-class PaymentSerializer(serializers.HyperlinkedModelSerializer):
-    id = serializers.ReadOnlyField()
+    # user = UserSerializer()
+    country = CountrySerializer()
     student = StudentSerializer()
     class Meta:
-        model = Payment
+        model = StudentDetail
         fields = '__all__'
         extra_fields = ['url']

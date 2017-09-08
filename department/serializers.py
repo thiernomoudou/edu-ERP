@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import ClassLevel, Department, Room, Subject
+from .models import ClassLevel, Department, Program
 
 
 class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
@@ -11,7 +11,7 @@ class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
         extra_fields = ['url']
 
 
-class ClasslevelSerializer(serializers.HyperlinkedModelSerializer):
+class ClassLevelSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.ReadOnlyField()
     department = DepartmentSerializer()
     class Meta:
@@ -19,20 +19,12 @@ class ClasslevelSerializer(serializers.HyperlinkedModelSerializer):
         fields = '__all__'
         extra_fields = ['url']
 
-class RoomSerializer(serializers.HyperlinkedModelSerializer):
+class ProgramSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.ReadOnlyField()
     department = DepartmentSerializer()
     class Meta:
-        model = Room
+        model = Program
         fields = '__all__'
         extra_fields = ['url']
 
 
-class SubjectSerializer(serializers.HyperlinkedModelSerializer):
-    id = serializers.ReadOnlyField()
-    class_level = ClasslevelSerializer()
-    teacher = serializers.StringRelatedField()
-    class Meta:
-        model = Subject
-        fields = '__all__'
-        extra_fields = ['url']

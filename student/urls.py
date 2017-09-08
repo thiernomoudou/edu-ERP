@@ -9,9 +9,9 @@ schema_view = get_schema_view(title='Pastebin API')
 router = DefaultRouter()
 #router.register(prefix='list', viewset=RegistrationView, base_name='Registration')
 router.register(r'student', views.StudentViewSet)
-router.register(r'exam', views.ExamViewSet)
-router.register(r'grade', views.GradeViewSet)
-router.register(r'payment', views.PaymentViewSet)
+router.register(r'country', views.CountryViewSet)
+router.register(r'student-details', views.StudentDetailViewSet)
+router.register(r'baccalaureat', views.BaccalaureatViewSet)
 
 urlpatterns = [
     url(r'^schema/$', schema_view),
