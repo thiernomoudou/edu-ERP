@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'department',
     'admission',
     'student',
-    'sysadmin',
 ]
 
 AUTH_USER_MODEL = 'accounts.Account'

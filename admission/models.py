@@ -1,7 +1,6 @@
 from django.db import models
 
 from department.models import ClassLevel
-from sysadmin.models import User
 from student.models import Student
 
 import datetime
@@ -26,5 +25,4 @@ class Admission(models.Model):
 
 class AdmissionProcess(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     admission = models.ForeignKey(Admission, on_delete=models.CASCADE)

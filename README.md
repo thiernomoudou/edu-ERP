@@ -41,7 +41,7 @@ touch .env
 '''
 
 
-open the .env file and then set the secretkey 
+open the .env file and then set the secretkey  
 '''
 SECRET_KEY=y83-5a2$3c)!88cieuwuwywopppp-382872
 '''
